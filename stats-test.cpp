@@ -3,6 +3,7 @@
 #include "gtest/gtest.h"
 #include <math.h>
 
+// Test case to calculate average with genuine values 
 TEST(Statistics, ReportsAverageMinMax) {
     float values[] = {1.5, 8.9, 3.2, 4.5};
     auto computedStats = compute_statistics(values, 4);
@@ -12,7 +13,21 @@ TEST(Statistics, ReportsAverageMinMax) {
     EXPECT_LT(fabsf(computedStats.min - 1.5), epsilon);
 }
 
-TEST(Statistics, AverageNaNForEmpty) {
-    float values[1] = {};
-    auto computedStats = compute_statistics(values, 0);
+//Test case to ignore one invalid value
+TEST(Statistics, AverageIgnoreNaN) {
+    float values[] = {1.5, 8.9, 4.5, NAN};
+    auto computedStats = compute_statistics(values, 3);
+    float epsilon = 0.001;
+    EXPECT_LT(fabsf(computedStats.average - 4.967), epsilon);
+    EXPECT_LT(fabsf(computedStats.max - 8.9), epsilon);
+    EXPECT_LT(fabsf(computedStats.min - 1.5), epsilon);
+}
+
+//Test case to check whether all values are invalid
+TEST(Statistics, AverageNaNForAllNaN) {
+    float values[] = {NAN, NAN, NAN};
+    auto computedStats = compute_statistics(values, 3);
+    EXPECT_TRUE(isnan(computedStats.average));
+    EXPECT_TRUE(isnan(computedStats.max));
+    EXPECT_TRUE(isnan(computedStats.min));
 }

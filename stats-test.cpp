@@ -27,7 +27,7 @@ TEST(Statistics, AverageIgnoreNaN) {
 TEST(Statistics, AverageNaNForAllNaN) {
     float values[] = {NAN, NAN, NAN};
     auto computedStats = compute_statistics(values, 3);
-    EXPECT_LT(isnan(computedStats.average));
-    EXPECT_LT(isnan(computedStats.max));
-    EXPECT_LT(isnan(computedStats.min));
+    EXPECT_TRUE(isnan(computedStats.average));
+    EXPECT_TRUE(isnan(computedStats.max));
+    EXPECT_TRUE(isnan(computedStats.min));
 }

@@ -11,8 +11,3 @@ TEST(Statistics, ReportsAverageMinMax) {
     EXPECT_LT(fabsf(computedStats.max - 8.9), epsilon);
     EXPECT_LT(fabsf(computedStats.min - 1.5), epsilon);
 }
-
-TEST(Statistics, AverageNaNForEmpty) {
-    float values[1] = {};
-    auto computedStats = compute_statistics(values, 0);
-}

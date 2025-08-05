@@ -15,7 +15,7 @@ TEST(Statistics, ReportsAverageMinMax) {
 
 //Test case to ignore one invalid value
 TEST(Statistics, AverageIgnoreNaN) {
-    float values[] = {1.5, 8.9, NAN, 4.5};
+    float values[] = {1.5, 8.9, 4.5, NAN};
     auto computedStats = compute_statistics(values, 3);
     float epsilon = 0.001;
     EXPECT_LT(fabsf(computedStats.average - 4.967), epsilon);

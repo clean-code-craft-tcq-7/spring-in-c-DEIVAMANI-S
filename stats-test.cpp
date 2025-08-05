@@ -3,11 +3,22 @@
 #include "gtest/gtest.h"
 #include <math.h>
 
+// Test case to calculate average with genuine values 
 TEST(Statistics, ReportsAverageMinMax) {
     float values[] = {1.5, 8.9, 3.2, 4.5};
     auto computedStats = compute_statistics(values, 4);
     float epsilon = 0.001;
     EXPECT_LT(fabsf(computedStats.average - 4.525), epsilon);
     EXPECT_LT(fabsf(computedStats.max - 8.9), epsilon);
+    EXPECT_LT(fabsf(computedStats.min - 1.5), epsilon);
+}
+
+//Test case to ignore one invalid value
+TEST(Statistics, AverageIgnoreNaN) {
+    float values[] = {1.5, 8.7, NAN, 4.5};
+    auto computedStats = compute_statistics(values, 4);
+    float epsilon = 0.001;
+    EXPECT_LT(fabsf(computedStats.average - 4.9), epsilon);
+    EXPECT_LT(fabsf(computedStats.max - 8.7), epsilon);
     EXPECT_LT(fabsf(computedStats.min - 1.5), epsilon);
 }

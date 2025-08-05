@@ -22,3 +22,12 @@ TEST(Statistics, AverageIgnoreNaN) {
     EXPECT_LT(fabsf(computedStats.max - 8.9), epsilon);
     EXPECT_LT(fabsf(computedStats.min - 1.5), epsilon);
 }
+
+//Test case to check whether all values are invalid
+TEST(Statistics, AverageNaNForAllNaN) {
+    float values[] = {NAN, NAN, NAN};
+    auto computedStats = compute_statistics(values, 3);
+    EXPECT_LT(isnan(computedStats.average));
+    EXPECT_LT(isnan(computedStats.max));
+    EXPECT_LT(isnan(computedStats.min));
+}

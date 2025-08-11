@@ -1,6 +1,5 @@
 #include "../src/stats.h"
 
-#include "stats.h"
 #include "gtest/gtest.h"
 #include <math.h>
 

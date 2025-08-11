@@ -1,4 +1,5 @@
-#include "stats.h"
+#include "../src/stats.h"
+
 #include <stddef.h>
 #include <float.h>
 #include <math.h>

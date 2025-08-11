@@ -2,6 +2,7 @@
 
 #include "gtest/gtest.h"
 #include <math.h>
+#include <limits.h>
 
 // Test case to calculate average with normal values 
 TEST(Statistics, ReportsAverageMinMax) {

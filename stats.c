@@ -58,8 +58,8 @@ struct Stats compute_statistics(const float* numbers, int count) {
     // Validate data
     int absurdityValidation = checkValueAbsurdity(numbers, count);
     if (count <= 0 || absurdityValidation != 0) {
-        setStatisticstoNaN(&statistics);
-        return statistics;
+        setStatisticstoNaN(&stats);
+        return stats;
     }
 
     // Process numbers

@@ -48,3 +48,35 @@ TEST(Statistics, NullPointer) {
     EXPECT_TRUE(isnan(computedStats.max));
     EXPECT_TRUE(isnan(computedStats.min));
 }
+
+//Test case to check zero count
+TEST(Statistics, ZeroCountTest) {
+    float values[] = {1.5, 8.9, 4.5, 3.2};
+    auto computedStats = compute_statistics(values, 0);
+    EXPECT_TRUE(isnan(computedStats.average));
+    EXPECT_TRUE(isnan(computedStats.max));
+    EXPECT_TRUE(isnan(computedStats.min));
+}
+
+
+//Test case to check negative count
+TEST(Statistics, NegativeCountTest) {
+    float values[] = {1.5, 8.9, 4.5, 3.2};
+    auto computedStats = compute_statistics(values, -4);
+    EXPECT_TRUE(isnan(computedStats.average));
+    EXPECT_TRUE(isnan(computedStats.max));
+    EXPECT_TRUE(isnan(computedStats.min));
+}
+
+//Test case to check overflow of elements
+TEST(Statistics, CountOverflowTest) {
+    float dummy = 1.0f;
+    // Force count > INT_MAX / sizeof(float)
+    int largeCount = (INT_MAX / (int)sizeof(float)) + 1;
+    auto computedStats = compute_statistics(&dummy, largeCount);
+    EXPECT_TRUE(isnan(computedStats.average));
+    EXPECT_TRUE(isnan(computedStats.max));
+    EXPECT_TRUE(isnan(computedStats.min));
+}
+
+
